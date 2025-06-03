@@ -29,7 +29,7 @@ function Dashboard() {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`https://recipe-book-backend-project.onrender.com/${id}`, {
+      await axios.delete(`https://recipe-book-backend-project.onrender.com${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
