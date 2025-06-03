@@ -8,7 +8,7 @@ function Dashboard() {
   const fetchRecipes = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('https://recipe-book-backend-project.onrender.com/api/recipes', {
+      const res = await axios.get('https://recipe-book-backend-project.onrender.com', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
