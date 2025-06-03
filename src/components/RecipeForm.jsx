@@ -17,7 +17,7 @@ function RecipeForm({ onRecipeAdded }) {
 
       console.log('Sending recipe with token:', token);
       const response = await axios.post(
-        'http://localhost:5000/api/recipes',
+        'https://recipe-book-backend-project.onrender.com',
         { title, ingredients, instructions },
         {
           headers: {
