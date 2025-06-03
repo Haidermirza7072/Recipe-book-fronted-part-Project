@@ -8,17 +8,21 @@ function Dashboard() {
   const fetchRecipes = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('https://recipe-book-backend-project.onrender.com', {
+      const res = await axios.get('https://recipe-book-backend-project.onrender.com/api/recipes', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log('Data from backend:', res.data);
+
+      console.log('Backend data:', res.data);
+      console.log('Type of data:', typeof res.data);
+      console.log('Is array?', Array.isArray(res.data));
 
       if (Array.isArray(res.data)) {
         setRecipes(res.data);
+      } else if (res.data.recipes && Array.isArray(res.data.recipes)) {
+        setRecipes(res.data.recipes);
       } else {
-        console.error('Expected an array but got:', res.data);
         setRecipes([]);
       }
     } catch (err) {
@@ -29,7 +33,7 @@ function Dashboard() {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`https://recipe-book-backend-project.onrender.com${id}`, {
+      await axios.delete(`https://recipe-book-backend-project.onrender.com/api/recipes/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
